@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/@3846masa/http-signature.png?mini=true)](https://www.npmjs.com/package/@3846masa/http-signature)
 [![CircleCI](https://flat.badgen.net/circleci/github/3846masa/http-signature)](https://circleci.com/gh/3846masa/http-signature)
-[![Codecov](https://flat.badgen.net/codecov/c/github/3846masa/http-signature)](https://codecov.io/gh/3846masa/http-signature)
+[![Codecov](https://flat.badgen.net/codecov/c/github/3846masa/http-signature)](https://codecov.io/gh/3846masa/http-signature) [![Greenkeeper badge](https://badges.greenkeeper.io/3846masa/http-signature.svg)](https://greenkeeper.io/)
 
 > Create / Verify [HTTP Signatures](https://tools.ietf.org/html/draft-cavage-http-signatures-10)
 
