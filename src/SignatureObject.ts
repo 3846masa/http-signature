@@ -5,6 +5,10 @@ export interface SignatureObject extends Record<string, string | undefined> {
   signature: string;
 }
 
+export interface SignatureObjectWithHeaders extends SignatureObject {
+  headers: string;
+}
+
 export function isValidSignatureObject(object: Record<string, string | undefined>): object is SignatureObject {
   return object.keyId && object.signature ? true : false;
 }

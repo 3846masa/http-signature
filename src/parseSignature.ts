@@ -1,13 +1,11 @@
-import { SignatureObject, isValidSignatureObject } from './SignatureObject';
+import { SignatureObjectWithHeaders, isValidSignatureObject } from './SignatureObject';
 
 type ParseMode = 'key' | 'prevalue' | 'value' | 'postvalue';
 
-type SignatureObjectWithHeaders = SignatureObject & Pick<Required<SignatureObject>, 'headers'>;
-
 export function parseSignature(signature: string): SignatureObjectWithHeaders {
-  const result: Pick<SignatureObjectWithHeaders, 'headers'> & Record<string, unknown> = {
+  const result = {
     headers: 'date',
-  };
+  } as SignatureObjectWithHeaders;
 
   const state = {
     cursor: 0,
