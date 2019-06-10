@@ -1,11 +1,11 @@
 import crypto from 'crypto';
 
 import { Headers } from './Headers';
-import { parseSignature } from './parseSignature';
 import { createSignatureString } from './createSignatureString';
+import { SignatureObjectWithHeaders } from './SignatureObject';
 
 export interface VerifySignatureOptions {
-  signature: string;
+  signature: SignatureObjectWithHeaders;
   method: 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
   pathname: string;
   publicKey: string;
@@ -25,15 +25,13 @@ export function verifySignature({
     '(request-target)': `${method.toLowerCase()} ${pathname}`,
   });
 
-  const parsed = parseSignature(signature);
-  const properties = parsed.headers.split(/\s+/g).map((p) => p.trim());
+  const properties = signature.headers.split(/\s+/g).map((p) => p.trim());
 
   const verify = crypto.createVerify('RSA-SHA256');
   verify.update(createSignatureString({ headers, properties }));
 
-  if (!verify.verify(publicKey, parsed.signature, 'base64')) {
-    throw new Error('Invalid signature');
+  if (!verify.verify(publicKey, signature.signature, 'base64')) {
+    return false;
   }
-
-  return parsed;
+  return true;
 }
