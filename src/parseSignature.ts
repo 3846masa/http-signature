@@ -1,11 +1,13 @@
-import { SignatureObject } from './SignatureObject';
+import { SignatureObject, isValidSignatureObject } from './SignatureObject';
 
 type ParseMode = 'key' | 'prevalue' | 'value' | 'postvalue';
 
-export function parseSignature(signature: string): Required<SignatureObject> {
-  const result = {
+type SignatureObjectWithHeaders = SignatureObject & Pick<Required<SignatureObject>, 'headers'>;
+
+export function parseSignature(signature: string): SignatureObjectWithHeaders {
+  const result: Pick<SignatureObjectWithHeaders, 'headers'> & Record<string, unknown> = {
     headers: 'date',
-  } as SignatureObject;
+  };
 
   const state = {
     cursor: 0,
@@ -68,5 +70,9 @@ export function parseSignature(signature: string): Required<SignatureObject> {
     }
   }
 
-  return result as any;
+  if (!isValidSignatureObject(result)) {
+    throw new Error('keyId and signature paramerters should be required.');
+  }
+
+  return result;
 }
