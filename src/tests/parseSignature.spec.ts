@@ -34,3 +34,15 @@ test('parseSignature should set "date" to headers when headers is none', (t) => 
 
   t.deepEqual(actual, expected);
 });
+
+test('parseSignature should failed when keyId or signature is not included', (t) => {
+  t.throws(() => {
+    parseSignature(
+      `algorithm="rsa-sha256",signature="SjWJWbWN7i0wzBvtPl8rbASWz5xQW6mcJmn+ibttBqtifLN7Sazz6m79cNfwwb8DMJ5cou1s7uEGKKCs+FLEEaDV5lp7q25WqS+lavg7T8hc0GppauB6hbgEKTwblDHYGEtbGmtdHgVCk9SuS13F0hZ8FD0k/5OxEPXe5WozsbM="`,
+    );
+  });
+
+  t.throws(() => {
+    parseSignature(`keyId="Test",algorithm="rsa-sha256"`);
+  });
+});
