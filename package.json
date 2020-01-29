@@ -31,7 +31,7 @@
   "types": "lib/index.d.ts",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^10.17.13",
+    "@types/node": "^10.17.14",
     "ava": "^3.1.0",
     "codecov": "^3.6.2",
     "husky": "^4.2.1",
