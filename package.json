@@ -32,7 +32,7 @@
   "dependencies": {},
   "devDependencies": {
     "@types/node": "^10.17.26",
-    "ava": "^3.9.0",
+    "ava": "^3.10.0",
     "codecov": "^3.7.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
